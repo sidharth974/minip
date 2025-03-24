@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+    /* General Styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      /* Added a subtle radial gradient overlay for depth */
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%), #0e0c28;
+      color: white;
+      font-family: 'Ubuntu', sans-serif;
+      text-align: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .stars, .stars2, .stars3 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-repeat: repeat;
+      background-size: contain;
+      z-index: 0;
+    }
+
+    .stars {
+      background-image: url('stardust.png');
+      animation: moveStars 50s linear infinite;
+    }
+
+    .stars2 {
+      background-image: url('stardust.png');
+      animation: moveStars 100s linear infinite;
+      opacity: 0.5;
+    }
+
+    .stars3 {
+      background-image: url('stardust.png');
+      animation: moveStars 150s linear infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 10000px; }
+    }
+
+    /* Glitch Animation */
+    .glitch {
+      font-size: 4em;
+      position: absolute;
+      /* Semi-transparent color enhanced with mix-blend and brightness */
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      animation: glitch 1s infinite, colorChange 3s infinite, bounce 10s linear infinite;
+      z-index: 1;
+      mix-blend-mode: screen;
+      filter: brightness(1.2);
+      will-change: transform, top, left;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 3px 3px red, -3px -3px blue; }
+      25% { text-shadow: -3px -3px red, 3px 3px blue; }
+      50% { text-shadow: 3px -3px red, -3px 3px blue; }
+      75% { text-shadow: -3px 3px red, 3px -3px blue; }
+      100% { text-shadow: 3px 3px red, -3px -3px blue; }
+    }
+
+    @keyframes bounce {
+      0% { top: 10%; left: 10%; }
+      25% { top: 80%; left: 20%; }
+      50% { top: 30%; left: 70%; }
+      75% { top: 60%; left: 50%; }
+      100% { top: 20%; left: 30%; }
+    }
+
+    @keyframes colorChange {
+      0% { color: white; }
+      25% { color: cyan; }
+      50% { color: magenta; }
+      75% { color: yellow; }
+      100% { color: white; }
+    }
+
+    /* Form Container Styling */
+    .form-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      text-align: center;
+      /* Optional: add subtle background for legibility */
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    input {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      font-size: 1em;
+      border: none;
+      border-radius: 50px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      transition: background 0.3s, box-shadow 0.3s;
+      width: 250px;
+    }
+
+    input:focus {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+
+    .login-btn {
+        background: linear-gradient(60deg, #0d1b2a, #eee45e, #e7aa26);
+      background-size: 300% 300%;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 50px;
+      color: black;
+      font-family: 'Ubuntu', sans-serif;
+      font-size: 1.2em;
+      cursor: pointer;
+      animation: gradientMove 5s ease infinite;
+      transition: transform 0.3s;
+    }
+
+    .login-btn:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Planet Styling */
+    .planet {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background-size: cover;
+      background-position: center;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      border-radius: 50%;
+      will-change: transform;
+    }
+
+    .planet1 {
+      top: 10%;
+      left: 5%;
+      background-image: url('8787374.png');
+      animation: orbit1 10s linear infinite;
+    }
+
+    .planet2 {
+      top: 60%;
+      left: 80%;
+      background-image: url('17263322.png');
+      animation: orbit2 12s linear infinite;
+    }
+
+    .planet3 {
+      top: 30%;
+      left: 50%;
+      background-image: url('12918484.png');
+      animation: orbit3 15s linear infinite;
+    }
+
+    @keyframes orbit1 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(150px, 150px) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    @keyframes orbit2 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-200px, -100px) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    @keyframes orbit3 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(100px, -150px) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 600px) {
+      .glitch {
+        font-size: 3em;
+      }
+      input {
+        width: 80%;
+      }
+      .planet {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  </style>
+  <script>
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error('Invalid Credentials');
+        }
+      })
+      .then(data => {
+        alert('Login Successful! Token: ' + data.token);
+        window.location.href = 'products.html'; // Redirect to products.html
+      })
+      .catch(err => alert('Invalid Credentials'));
+    }
+  </script>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+  <div class="planet planet1"></div>
+  <div class="planet planet2"></div>
+  <div class="planet planet3"></div>
+  
+  <h1 class="glitch">SECURESITE</h1>
+  <div class="form-container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button class="login-btn" onclick="login()">Login</button>
+  </div>
+</body>
+</html>

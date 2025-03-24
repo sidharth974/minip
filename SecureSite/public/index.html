@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SECURESITE</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+    /* General Styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      /* Added a subtle radial gradient overlay for depth */
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%), #0e0c28;
+      color: white;
+      font-family: 'Ubuntu', sans-serif;
+      text-align: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .stars, .stars2, .stars3 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-repeat: repeat;
+      background-size: contain;
+      z-index: 0;
+    }
+
+    .stars {
+      background-image: url('stardust.png');
+      animation: moveStars 50s linear infinite;
+    }
+
+    .stars2 {
+      background-image: url('stardust.png');
+      animation: moveStars 100s linear infinite;
+      opacity: 0.5;
+    }
+
+    .stars3 {
+      background-image: url('stardust.png');
+      animation: moveStars 150s linear infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 10000px; }
+    }
+
+    /* Glitch Animation */
+    .glitch {
+      font-size: 4em;
+      position: absolute;
+      color: white;
+      text-transform: uppercase;
+      animation: glitch 1s infinite, bounce 5s linear infinite alternate, colorChange 3s infinite;
+      mix-blend-mode: screen;
+      filter: brightness(1.2);
+      will-change: transform, top, left;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 3px 3px red, -3px -3px blue; }
+      25% { text-shadow: -3px -3px red, 3px 3px blue; }
+      50% { text-shadow: 3px -3px red, -3px 3px blue; }
+      75% { text-shadow: -3px 3px red, 3px -3px blue; }
+      100% { text-shadow: 3px 3px red, -3px -3px blue; }
+    }
+
+    @keyframes bounce {
+      0% { top: 10%; left: 10%; }
+      25% { top: 80%; left: 20%; }
+      50% { top: 30%; left: 70%; }
+      75% { top: 60%; left: 50%; }
+      100% { top: 20%; left: 30%; }
+    }
+
+    @keyframes colorChange {
+      0% { color: white; }
+      25% { color: cyan; }
+      50% { color: magenta; }
+      75% { color: yellow; }
+      100% { color: white; }
+    }
+
+    /* Planets using Images with Dynamic Motion */
+    .planet {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background-size: cover;
+      background-position: center;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      /* Added shadow and circular shape for extra depth */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      border-radius: 50%;
+      will-change: transform;
+    }
+
+    .planet1 {
+      top: 10%;
+      left: 5%;
+      background-image: url('8787374.png');
+      animation: orbit1 10s linear infinite;
+    }
+
+    .planet2 {
+      top: 60%;
+      left: 80%;
+      background-image: url('17263322.png');
+      animation: orbit2 12s linear infinite;
+    }
+
+    .planet3 {
+      top: 30%;
+      left: 50%;
+      background-image: url('12918484.png');
+      animation: orbit3 15s linear infinite;
+    }
+
+    @keyframes orbit1 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(150px, 150px) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    @keyframes orbit2 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-200px, -100px) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    @keyframes orbit3 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(100px, -150px) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    nav {
+      position: absolute;
+      bottom: 10%;
+      width: 100%;
+      /* Added a semi-transparent background and padding for better legibility */
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    /* Underline hover effect */
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #f0f;
+      left: 0;
+      bottom: -5px;
+      transition: width 0.3s;
+    }
+
+    nav a:hover {
+      color: #f0f;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Responsive tweaks for smaller screens */
+    @media (max-width: 600px) {
+      .glitch {
+        font-size: 3em;
+      }
+      .planet {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Layers -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <!-- Moving Glitch Text -->
+  <h1 class="glitch">SECURESITE</h1>
+
+  <!-- Planets -->
+  <div class="planet planet1"></div>
+  <div class="planet planet2"></div>
+  <div class="planet planet3"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="register.html">Register</a> | 
+    <a href="login.html">Login</a> | 
+    <a href="products.html">Products</a>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+    /* General Styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%), #0e0c28;
+      color: white;
+      font-family: 'Ubuntu', sans-serif;
+      text-align: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    /* Stardust Background Layers */
+    .stars, .stars2, .stars3 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-repeat: repeat;
+      background-size: contain;
+      z-index: 0;
+    }
+    .stars {
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      animation: moveStars 50s linear infinite;
+    }
+    .stars2 {
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      animation: moveStars 100s linear infinite;
+      opacity: 0.5;
+    }
+    .stars3 {
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      animation: moveStars 150s linear infinite;
+      opacity: 0.2;
+    }
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 10000px; }
+    }
+
+    /* Glitch Text Header */
+    .glitch {
+      font-size: 4em;
+      position: absolute;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      animation: glitch 1s infinite, bounce 5s linear infinite alternate, colorChange 3s infinite;
+      z-index: 1;
+      width: 100%;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      mix-blend-mode: screen;
+      filter: brightness(1.2);
+      will-change: transform, top, left;
+    }
+    @keyframes glitch {
+      0% { text-shadow: 3px 3px red, -3px -3px blue; }
+      25% { text-shadow: -3px -3px red, 3px 3px blue; }
+      50% { text-shadow: 3px -3px red, -3px 3px blue; }
+      75% { text-shadow: -3px 3px red, 3px -3px blue; }
+      100% { text-shadow: 3px 3px red, -3px -3px blue; }
+    }
+    @keyframes bounce {
+      0% { top: 10%; left: 10%; }
+      25% { top: 80%; left: 20%; }
+      50% { top: 30%; left: 70%; }
+      75% { top: 60%; left: 50%; }
+      100% { top: 20%; left: 30%; }
+    }
+    @keyframes colorChange {
+      0% { color: white; }
+      25% { color: cyan; }
+      50% { color: magenta; }
+      75% { color: yellow; }
+      100% { color: white; }
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Products Section Styles */
+    .products-container {
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      text-align: center;
+      width: 90%;
+      max-width: 800px;
+    }
+    .products-container h2 {
+      margin-bottom: 20px;
+    }
+    /* Product Banner Container */
+    .product-banner {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .product-banner:hover {
+      transform: scale(1.02);
+    }
+    .product-banner img {
+      width: 150px;
+      height: auto;
+      border-radius: 10px;
+      margin-right: 20px;
+    }
+    .product-description {
+      text-align: left;
+    }
+    .product-description h3 {
+      margin: 0 0 10px;
+    }
+    .product-description p {
+      margin: 5px 0;
+    }
+
+    /* Purchase Form Styles */
+    .purchase-form input {
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 50px; 
+      background: rgba(255,255,255,0.1);
+      color: white;
+      width: 250px;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .purchase-form input:focus {
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 8px rgba(255,255,255,0.5);
+    }
+    .purchase-form button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 50px; 
+      background: linear-gradient(60deg, #0d1b2a, #1e3c72, #2a5298);
+      background-size: 300% 300%;
+      color: white;
+      cursor: pointer;
+      animation: gradientMove 5s ease infinite;
+      transition: transform 0.3s;
+    }
+    .purchase-form button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Planets using Images with Dynamic Motion */
+    .planet {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background-size: cover;
+      background-position: center;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      border-radius: 50%;
+      will-change: transform;
+    }
+    .planet1 {
+      top: 10%;
+      left: 5%;
+      background-image: url('https://cdn-icons-png.flaticon.com/128/8787/8787374.png');
+      animation: orbit1 10s linear infinite;
+    }
+    .planet2 {
+      top: 60%;
+      left: 80%;
+      background-image: url('https://cdn-icons-png.flaticon.com/128/17263/17263322.png');
+      animation: orbit2 12s linear infinite;
+    }
+    .planet3 {
+      top: 30%;
+      left: 50%;
+      background-image: url('https://cdn-icons-png.flaticon.com/128/12918/12918484.png');
+      animation: orbit3 15s linear infinite;
+    }
+    @keyframes orbit1 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(150px, 150px) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+    @keyframes orbit2 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-200px, -100px) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+    @keyframes orbit3 {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(100px, -150px) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    /* Navigation */
+    nav {
+      position: absolute;
+      bottom: 10%;
+      width: 100%;
+      z-index: 2;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #f0f;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 600px) {
+      .glitch {
+        font-size: 3em;
+      }
+      .product-banner {
+        flex-direction: column;
+        align-items: center;
+      }
+      .product-banner img {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100%;
+        max-width: 200px;
+      }
+      .purchase-form input {
+        width: 80%;
+      }
+      .planet {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+  
+  <h1 class="glitch">INSECURESITE</h1>
+  
+  <!-- Products Section -->
+  <div class="products-container" id="products-section">
+    <h2>Available Products</h2>
+    
+    <!-- Product Banner 1 -->
+    <div class="product-banner">
+      <img src="https://via.placeholder.com/150" alt="Product 1 Image">
+      <div class="product-description">
+        <h3>Product 1</h3>
+        <p>Price: $100</p>
+        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </div>
+    
+    <!-- Product Banner 2 -->
+    <div class="product-banner">
+      <img src="https://via.placeholder.com/150" alt="Product 2 Image">
+      <div class="product-description">
+        <h3>Product 2</h3>
+        <p>Price: $200</p>
+        <p>Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+      </div>
+    </div>
+    
+    <!-- Product Banner 3 -->
+    <div class="product-banner">
+      <img src="https://via.placeholder.com/150" alt="Product 3 Image">
+      <div class="product-description">
+        <h3>Product 3</h3>
+        <p>Price: $300</p>
+        <p>Description: Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </div>
+    
+    <h3>Purchase Form</h3>
+    <form class="purchase-form" action="#" method="post">
+      <input type="text" placeholder="Credit Card Number" required>
+      <button type="submit">Purchase</button>
+    </form>
+  </div>
+  
+  <!-- Planets -->
+  <div class="planet planet1"></div>
+  <div class="planet planet2"></div>
+  <div class="planet planet3"></div>
+  
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="register.html">Register</a>
+    <a href="login.html">Login</a>
+  </nav>
+</body>
+</html>
